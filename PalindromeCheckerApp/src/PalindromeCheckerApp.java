@@ -4,26 +4,28 @@ public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        String input = "radar";
 
-        // Read input string
-        System.out.print("Enter a string: ");
-        String input = scanner.nextLine();
+        char[] chars = input.toCharArray();
 
-        // Reverse string using loop
-        String reversed = "";
+        int start = 0;
+        int end = chars.length - 1;
 
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed = reversed + input.charAt(i);
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
+        if (isPalindrome){
+            System.out.println("Its palindrome");
+        }else{
+            System.out.println("Its not palindrome");
 
-        // Compare original and reversed
-        if (input.equals(reversed)) {
-            System.out.println("It is a palindrome.");
-        } else {
-            System.out.println("It is not a palindrome.");
         }
-
-        scanner.close();
     }
 }
