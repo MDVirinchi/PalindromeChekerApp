@@ -3,28 +3,21 @@ import java.util.*;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
+                Scanner sc = new Scanner(System.in);
+                System.out.print("Input : ");
+                String s = sc.nextLine();
 
+                boolean result = check(s, 0, s.length() - 1);
+                System.out.println("Is Palindrome? : " + result);
+            }
 
-                String input = "civic";
+            private static boolean check(String s, int start, int end) {
+                if (start >= end)
+                    return true;
 
-                Queue<Character> queue = new LinkedList<>();
-                Stack<Character> stack = new Stack<>();
+                if (s.charAt(start) != s.charAt(end))
+                    return false;
 
-                for (char c : input.toCharArray()) {
-                    queue.add(c);
-                    stack.push(c);
-                }
-
-                boolean isPalindrome = true;
-
-                while (!queue.isEmpty()) {
-                    if (queue.remove() != stack.pop()) {
-                        isPalindrome = false;
-                        break;
-                    }
-                }
-
-                System.out.println("Input : " + input);
-                System.out.println("Is Palindrome? : " + isPalindrome);
+                return check(s, start + 1, end - 1);
             }
         }
