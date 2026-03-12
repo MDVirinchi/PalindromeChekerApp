@@ -13,7 +13,7 @@ public class PallindromeChecker {
             String s = sc.nextLine();
 
             boolean result = check(s, 0, s.length() - 1);
-            System.out.println("Is Palindrome? : " + result);
+            System.out.println(" Is Palindrome? : " + result);
         }
         private static boolean check(String s, int start, int end) {
             if (start >= end)
