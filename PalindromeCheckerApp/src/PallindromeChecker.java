@@ -14,9 +14,9 @@ public class PallindromeChecker {
             System.out.print("Input: ");
             String input = sc.nextLine();
 
-            PalindromeService service = new PalindromeService();
+            PalindromeStrategy strategy = new StackStrategy();
 
-            boolean result = service.checkPalindrome(input);
+            boolean result = strategy.check(input);
 
             System.out.println("Is Palindrome? : " + result);
 
@@ -24,21 +24,27 @@ public class PallindromeChecker {
         }
     }
 
-    class PalindromeService {
+    interface PalindromeStrategy {
+        boolean check(String input);
+    }
 
-        public boolean checkPalindrome(String input) {
+    class StackStrategy implements PalindromeStrategy {
 
-            int start = 0;
-            int end = input.length() - 1;
+        public boolean check(String input) {
 
-            while (start < end) {
+            Stack<Character> stack = new Stack<>();
 
-                if (input.charAt(start) != input.charAt(end)) {
+            // push characters
+            for(char c : input.toCharArray()) {
+                stack.push(c);
+            }
+
+            // compare characters
+            for(char c : input.toCharArray()) {
+
+                if(c != stack.pop()) {
                     return false;
                 }
-
-                start++;
-                end--;
             }
 
             return true;
